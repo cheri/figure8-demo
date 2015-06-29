@@ -3,8 +3,7 @@
 	https://github.com/cheri/FIGURE8-demo
 
   Copyright (c) 2015 Sarah Harmon
-  	This source code is free to use under the Creative Commons CC-BY license 
-	with author attribution. 
+  	This source code is free to use under the GNU General Public License (GPL) with author attribution. 
 
   OVERVIEW
 	The complete FIGURE8 system writes creative metaphors and similes by:
