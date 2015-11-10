@@ -3,23 +3,23 @@
 	https://github.com/cheri/FIGURE8-demo
 
   Copyright (c) 2015 Sarah Harmon
-  	This source code is free to use under the GNU General Public License (GPL) with author attribution. 
+  	This source code is free to use under the GNU General Public License (GPL) with author attribution.
 
   OVERVIEW
 	The complete FIGURE8 system writes creative metaphors and similes by:
 		- Selecting a tenor.
-		- Finding an appropriate vehicle (least semantically similar, with 
+		- Finding an appropriate vehicle (least semantically similar, with
 			few properties in common).
-		- Generating a sentence by using imaginative recall on fixed, valid 
-			grammar constructions. 
+		- Generating a sentence by using imaginative recall on fixed, valid
+			grammar constructions.
 		- Ranking its generations to decide which one is its "favorite".
 
-	Commonly associated properties for words (e.g. "queen" having a common 
-		association with "royal") are derived via a JavaScript web scraper on 
+	Commonly associated properties for words (e.g. "queen" having a common
+		association with "royal") are derived via a JavaScript web scraper on
 		online databases (e.g. http://wordassociations.net/).
 
-	Creatively associated words are found with a separate module that learns 
-		from input literary texts (stored in input.txt).  For an example of how 
+	Creatively associated words are found with a separate module that learns
+		from input literary texts (stored in input.txt).  For an example of how
 		these words are discovered, refer to FindAssocs.py.
 
   USAGE
@@ -28,16 +28,16 @@
   		- Select a tenor from NounMetadata.py.
   		- Find three potential vehicles for that tenor.
   		- Generate a fixed simile for each tenor-vehicle pairing.
-  		- Rank its comparison based on a few miscellaneous statistics about the pair. 
+  		- Rank its comparison based on a few miscellaneous statistics about the pair.
 
   SAMPLE GENERATION
-  	As an example, this demo may generate 
+  	As an example, this demo may generate
   		(1) "The music is curtsying like a princess."
   		(2) "The music is like a shuffling dance."
 
-  	Notably, "music" and "dance" share a higher value of semantic similarity 
-  	than "music" and "princess".  The complete FIGURE8 system would likely 
-  	favor the former simile and reject the latter.  	
+  	Notably, "music" and "dance" share a higher value of semantic similarity
+  	than "music" and "princess".  The complete FIGURE8 system would likely
+  	favor the former simile and reject the latter.
 '''
 
 import random
@@ -58,28 +58,39 @@ def find_num_in_common(item1,item2):
 def find_perc_in_common(item1,item2):
 	return 100*len(find_intersection(item1,item2))/ (len(item1["assoc"])+len(item1["color"])+len(item2["assoc"])+len(item2["color"])-len(find_intersection(item1,item2)))
 
+def get_singular(tenor):
+  # Manage exceptions that Nodebox handles poorly.
+  # e.g., singular words ending in "ss" are changed to end in "s"
+  if tenor!="princess":
+    return en.noun.singular(tenor)
+  else:
+   return tenor
+
 # Makes a simple simile based on fixed grammar constructions.
-def make_simile(tenor, vehicle, adj, verb):	
-	simile = ""
-	fixed_forms = [			
-			"The "+en.noun.singular(tenor)+" is like " + en.noun.article(adj) + " " + vehicle,
-			"The "+en.noun.singular(tenor)+" is " + adj + ", like " + en.noun.article(vehicle)
-	]	
+def make_simile(tenor, vehicle, adj, verb):
+  # Obtain singular form of tenor.
+  sing_tenor = get_singular(tenor)
+
+  simile = ""
+  fixed_forms = [
+			"The "+sing_tenor+" is like " + en.noun.article(adj) + " " + vehicle,
+			"The "+sing_tenor+" is " + adj + ", like " + en.noun.article(vehicle)
+	]
 
 	# Sometimes, the verbs are able to be conjugated by the available NodeBox Linguistics database.
-	try:	
+  try:
 		fixed_forms.extend([
-			"The "+en.noun.singular(tenor)+" is " + en.verb.present_participle(verb) + " like " +  en.noun.article(vehicle),
+			"The "+sing_tenor+" is " + en.verb.present_participle(verb) + " like " +  en.noun.article(vehicle),
 			"The "+tenor+" " + en.verb.past(verb,person=1) + " like " + en.noun.article(adj) + " " + vehicle,
 			"The "+tenor+", like " + en.noun.article(adj) + " " + vehicle + ", " +  en.verb.past(verb,person=1)
-		])	
+		])
 		simile = random.choice(fixed_forms)
 
-	except KeyError, e:
+  except KeyError, e:
 		print "(KeyError: Verb unavailable for NodeBox conjugation.)\n"
 		simile = random.choice(fixed_forms)
-	
-	return simile
+
+  return simile
 
 # Finds a vehicle associated with a tenor.
 def find_vehicle(tenor):
@@ -88,7 +99,7 @@ def find_vehicle(tenor):
 	b = []
 	while (set(a).isdisjoint(b) or tenor["name"]==vehicle["name"]):
 		vehicle = random.choice(all_obj)
-		b = vehicle["assoc"]		
+		b = vehicle["assoc"]
 	return vehicle
 
 # Returns the semantic similarity between two words.
@@ -97,7 +108,7 @@ def sss(s1, s2, type='concept', corpus='webbase'):
     try:
         response = get(sss_url, params={'operation':'api','phrase1':s1,'phrase2':s2,'type':type,'corpus':corpus})
         return float(response.text.strip())
-    except:        
+    except:
         print("Error in getting semantic similarity.")
         return 0.0
 
@@ -110,32 +121,32 @@ def similarity(str1, str2):
 def rank_comparison(tenor, vehicle, metaphor):
 	# Semantic similarity.
 	sem_sim = sss(tenor["name"], vehicle["name"])
-	str_sim = similarity(tenor["name"], vehicle["name"])	
+	str_sim = similarity(tenor["name"], vehicle["name"])
 
 	# Conceptual (Semantic) similarity.
 	print("SemSim("+ tenor["name"] + ", " + vehicle["name"] + "): " + str(sem_sim))
 
 	# String similarity.
 	print("DiffLibSeqSim("+ tenor["name"] + ", " + vehicle["name"] + "): " + str(str_sim))
-	
-	# Number of properties in common.	
+
+	# Number of properties in common.
 	print("Properties in Common: " + str(find_intersection(tenor,vehicle)))
 	print("Percentage of Common Properties: " + str(find_perc_in_common(tenor,vehicle)))
 	print("Shares major category? ") + str(tenor["type"]==vehicle["type"])
- 
-def main():	
-	# Choose a tenor at random from NounMetaData.py. 
+
+def main():
+	# Choose a tenor at random from NounMetaData.py.
 	tenor = random.choice(all_obj)
 
 	print "*********************************"
 	print "THE TENOR IS: " + tenor["name"]
-	
+
 	# Find three vehicles for the tenor.
 	for y in range(0, 3):
 		print "*********************************"
 		vehicle = find_vehicle(tenor)
-		
-		print "The #" + str(y+1) + " VEHICLE is " + vehicle["name"] 
+
+		print "The #" + str(y+1) + " VEHICLE is " + vehicle["name"]
 
 		# Find associated creative words to construct a simile.
 		adj=random.choice(vehicle["adj"])
@@ -146,7 +157,7 @@ def main():
 			print "THE ADJ IS " + adj
 
 			simile = make_simile(tenor["name"], vehicle["name"], adj, verb)
-						
+
 			print("SIMILE: '" + simile + ".'")
 
 			### RANK GENERATION ###
