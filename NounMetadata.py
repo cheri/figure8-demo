@@ -1,22 +1,22 @@
-''' 
+'''
   This file is part of a simple example of how the FIGURE8 system works.
 	https://github.com/cheri/FIGURE8-demo
 
   Copyright (c) 2015 Sarah Harmon
-  	This source code is free to use under the GNU General Public License (GPL) with author attribution. 
+  	This source code is free to use under the GNU General Public License (GPL) with author attribution.
 
   FUNCTION
-    The FIGURE8 system generates a file like this containing metadata for 
-    generating figurative language.  
+    The FIGURE8 system generates a file like this containing metadata for
+    generating figurative language.
 
-    The metadata in this example includes basic properties about each noun in the 
+    The metadata in this example includes basic properties about each noun in the
     knowledge base.  These properties are:
      - object name
      - object type (major category)
      - commonly-associated properties 	(collected via web scraper)
-     - commonly-associated colors 		(collected via web scraper)
+     - commonly-associated colors 			(collected via web scraper)
      - creatively-associated adjectives (found with FindAssocs.py)
-     - creatively-associated verbs 		(found with FindAssocs.py)
+     - creatively-associated verbs 			(found with FindAssocs.py)
 '''
 
 objects = [
@@ -27,7 +27,7 @@ objects = [
 					 "adj":['gilded', 'wild', 'little', 'big','spiced','rotten','withered','fragrant','gnarled'],
 					 "verb":['blossom','bloom','ferment','shrivel','bite']
 	},
-	
+
 	{"name":"grape", "assoc":["round","sour","sweet","juicy","edible","fresh","fruit"],
 				     "color":["purple","blue","green","white"],
 				     "type":"food",
@@ -49,21 +49,21 @@ objects = [
 						"adj":["armored","sandy","striped"],
 						"verb":['swarming','eat']
 	},
-	
+
 	{"name":"cat", "assoc":["stealthy","quiet","quick","selfish","agile","graceful","alert","sensual","intelligent","natural","soft"],
 				   "color":["black","white","brown","orange"],
 				   "type":"animal",
 				   "adj":['great', 'lesser', 'yellowish', 'dead'],
 				   "verb":['fell', 'flattened', 'screaming', 'believed', 'looks', 'reposed', 'obtruded']
 	},
-	
+
 	{"name":"serpent", "assoc":["stealthy","dangerous","quiet","intelligent","natural"],
 					   "color":["black","white","green","red"],
 					   "type":"animal",
 					   "adj":["fiery","fascinating"],
-					   "verb":["entwined"]	
+					   "verb":["entwined"]
 	},
-	
+
 	{"name":"bird","assoc":["beautiful","free","happy","natural","sweet","musical"],
 				   "color":["red","orange","yellow","green","blue","purple","white","black"],
 				   "type":"animal",
@@ -71,34 +71,34 @@ objects = [
 				   "verb":['building', 'sing', 'jumped', 'cried', 'felt', 'painted', 'lay', 'are', 'took', 'began', 'sang', 'flew', 'fell', 'flying', 'flies', 'frightened', 'rose', 'whistled', 'beating', 'falling', 'retaining', 'skimming', 'drying']
 	},
 
-	# Nouns that represents kinds of people.	
+	# Nouns that represents kinds of people.
 	{"name":"king", "assoc":["old","royal","powerful"],
 					   "color":[],
 					   "type":"person",
 					   "adj":['new', 'modern', 'chief', 'late', 'first', 'unfortunate', 'great', 'peace-loving', 'good', 'free', 'shadowy', 'French'],
 					   "verb":['explained', 'thinking', 'awaits', 'stood', 're-entered', 'entered', 'mumbled', 'looked', 'replied', 'defies', 'lunged','pales', 'seeking', 'listen', 'began', 'answered', 'knew', 'fell',  'consented', 'advancing', 'taking', 'looking', 'waved', 'commanded', 'watched', 'abandons', 'excited', 'flew', 'wished', 'feared', 'signed', 'nothing', 'turned', 'employs', 'took', 'make', 'asked', 'attacked', 'perceived', 'retiring', 'speaks', 'accustomed', 'desired', 'appeared', 'made', 'returned', 'opened', 'trembled', 'advanced', 'danced', 'counted', 'called', 'entertained', 'holding', 'held', 'halted', 'judged', 'granted', 'thanked', 'exchanged', 'inviting', 'continuing', 'laughed', 'betraying', 'addressing', 'inspired', 'driven', 'issued', 'remained', 'meet']
 	},
-	
+
 	{"name":"princess", "assoc":["royal","powerful","beautiful"],
 					   "color":[],
 					   "type":"person",
 					   "adj":['splendid', 'old', 'gallant', 'poor','fairy','widowed','young','gracious','Egyptian','winsome'],
 					   "verb":['curtsy','sleeping']
-	},	
+	},
 
 	{"name":"prince", "assoc":["royal","powerful","beautiful"],
 					   "color":[],
 					   "type":"person",
 					   "adj":['little', 'handsome', 'real', 'young', 'gracious', 'Italian', 'dear', 'worthy', 'unhappy', 'idle'],
 					   "verb":['acting', 'travelling','entered', 'returned', 'looked', 'offering']
-	},	
+	},
 
 	{"name":"queen", "assoc":["royal","powerful","beautiful"],
 					   "color":[],
 					   "type":"person",
 					   "adj":['poor', 'beautiful', 'unfortunate', 'true', 'young', 'noble', 'little', 'Austrian','imprisoned'],
 					   "verb":['kissed', 'leaving', 'cried', 'thought', 'begging', 'blushing', 'murmured', 'remain', 'looked', 'conspires', 'laid', 'sank', 'pressed', 'loves', 'felt', 'turned', 'uttered', 'took', 'ran', 'speaking', 'concealed', 'wants', 'speak', 'protect', 'gave', 'requires', 'entered', 'remained', 'bent', 'affecting', 'resumed', 'appeared', 'send', 'saving', 'charged', 'followed', 'fallen']
-	},	
+	},
 
 	# Nouns that represent buildings.
 	{"name":"castle", "assoc":["old","strong","royal"],
@@ -140,7 +140,7 @@ objects = [
 	{"name":"mouth",   "plural":False,
 					   "assoc":["round","red","tight"],
 					   "color":["red"],
-					   "type":"body part",	
+					   "type":"body part",
 					   "adj":['thin-lipped', 'wide-open', 'dark', 'charming', 'perfect', 'own', 'mobile', 'childlike', 'sad', 'strong', 'curved', 'wide', 'menacing', 'long'],
 					   "verb":['became', 'passing', 'seemed', 'constituted', 'watered', 'reflected', 'affords', 'repeated', 'gave', 'bewildered', 'do', 'shut', 'hesitated', 'turned', 'pressed', 'chiselled', 'contracted', 'stood', 'hardened', 'gagged', 'growing', 'twisted', 'stretched', 'fell']
 						},
@@ -152,15 +152,15 @@ objects = [
 					   "adj":['long', 'human', 'deaf', 'keen', 'willing', 'quick', 'own', 'menacing', 'mortal', 'sensitive'],
 					   "verb":['rang', 'detected', 'warned', 'bore', 'caught', 'began', 'stretching', 'chafed', 'whispering', 'took', 'ringing', 'pleading', 'hear', 'mingled', 'kept', 'attuned']
 						},
-	
+
 	# Celestial.
-	{"name":"moon", "assoc":["round","big","space","natural","dry"], 
+	{"name":"moon", "assoc":["round","big","space","natural","dry"],
 				       "color":["grey","white","silver"],
 				       "type":"celestial",
 					   "adj":['African', 'slender', 'weary', 'huge', 'misshapen', 'burned-out', 'desolate', 'pale', 'fitful', 'bright', 'inflamed'],
 					   "verb":['shone', 'rose', 'voiced', 'broke', 'lessened', 'soared', 'afforded', 'climbed', 'slanted', 'haunted', 'lighted', 'strove', 'hidden', 'shedding', 'resembled', 'shining', 'showed', 'looked', 'sailed']},
 
-	{"name":"sun", "assoc": ["round","big","space","natural","hot"], 
+	{"name":"sun", "assoc": ["round","big","space","natural","hot"],
 				       "color":["yellow","red"],
 				       "type":"celestial",
 					   "adj":['warm', 'beautiful', 'bright', 'brilliant', 'hot', 'western', 'new', 'tropical', 'fierce', 'red', 'white', 'rosy', 'sub-tropical', 'northern', 'ardent', 'autumnal','cloudless', 'bleached', 'slanting', 'shining', 'mid', 'dappled', 'vernal', 'solar', 'tropical', 'fleecy', 'blazing', 'tanned', 'autumnal', 'resplendent', 'balmy', 'bright', 'hot', 'gravitational', 'molten', 'sultry', 'dewy', 'shaded', 'dried', 'sparkling', 'glittering', 'nebulous', 'cloudy', 'tops', 'topmost', 'diffused', 'rosy', 'luminous', 'reflecting', 'fiery', 'watery', 'broiling', 'baked', 'declining', 'western', 'up', 'blistered', 'parched', 'down', 'gilded', 'hazy', 'tinted', 'eastern', 'wintry', 'pitiless', 'peeping', 'gaseous', 'fervid', 'glaring', 'revolving', 'sunk', 'descending', 'crested', 'flaming', 'stellar', 'still', 'terrestrial', 'planetary', 'incandescent', 'misty', 'ethereal', 'burnt', 'leafy', 'verdant', 'refreshing', 'exposed', 'shady', 'sheltered', 'reflected', 'streaked', 'milky', 'coppery', 'clear', 'lurid', 'radiant', 'genial', 'bareheaded', 'blue', 'glorious'],
@@ -173,24 +173,24 @@ objects = [
 					   "verb":['thought', 'appeared', 'differed', 'took', 'grown', 'completed', 'knows', 'humiliated', 'replied', 'stands', 'leave', 'belongs', 'dies', 'counting', 'filled', 'deceived', 'called', 'grows', 'traverse', 'returned', 'did', 'aided', 'are', 'calls', 'shaking', 'displayed', 'contains', 'nothing', 'obeyed', 'stood', 'knew', 'allowing']},
 
 	# Items.
-	{"name":"clock", "assoc":['round','artificial'], 
+	{"name":"clock", "assoc":['round','artificial'],
 				       "color":[],
 				       "type":"item",
-					   "adj":['old', 'electric', 'ponderous', 'astronomical', 'big', 'Italian'], 
+					   "adj":['old', 'electric', 'ponderous', 'astronomical', 'big', 'Italian'],
 					   "verb":['talked', 'struck', 'directed', 'indicated', 'pointed', 'shows', 'rose', 'counting', 'gave']},
 
-	# Natural entities. 
-	{"name":"rain", "assoc":["cold","wet","pure","clean","natural","fresh"], 
+	# Natural entities.
+	{"name":"rain", "assoc":["cold","wet","pure","clean","natural","fresh"],
 					  "color":["blue"],
 					  "type":"of-earth",
 					  "adj":['steady', 'golden', 'heavy', 'incessant'],
 					  "verb":['beating', 'continued', 'pouring', 'touched', 'concluded', 'extinguished']},
-	
-	{"name":"snow", "assoc":["cold","wet","pure","clean","natural","fresh"], 
+
+	{"name":"snow", "assoc":["cold","wet","pure","clean","natural","fresh"],
 					  "color":["blue"],
 					  "type":"of-earth",
 					  "adj":['cold', 'eternal', 'powdered', 'feathery','slippery'],
-					  "verb":['lay', 'covers', 'crackled', 'began', 'beat', 'fell', 'covered', 'blown', 'marked']},					  
+					  "verb":['lay', 'covers', 'crackled', 'began', 'beat', 'fell', 'covered', 'blown', 'marked']},
 
     # Valuables.
 	{"name":"pearl", "assoc":["round","rare","pure","beautiful","natural"],
@@ -199,12 +199,12 @@ objects = [
 					   "adj":["inlaid","iridescent","studded","priceless","garnished","jewelled","lustrous","costly","bombed","plaited","strung","decked","hued","handled","peerless","gold",'false', 'loveliest', 'liquid', 'richest'],
 					   "verb":['lying', 'fell']},
 
-	# Electronics. 
+	# Electronics.
 	{"name":"wire", "assoc":["slender","artificial"],
 					   "color":[],
 					   "type":"electronics",
 					   "adj":['telegraphic', 'magnetic'],
-					   "verb":["grating"]}, 	    
+					   "verb":["grating"]},
 
     # Plants.
 	{"name":"tree", "assoc":["tall","natural","heavy"],
@@ -213,20 +213,20 @@ objects = [
 					  "adj":["luxuriant","planted","feathery","shaded","tropical","dense","leafless",'other', 'tallest', 'noble', 'young', 'poor', 'dark', 'elder', 'little', 'old', 'large', 'blue', 'beautiful', 'great', 'cherry', 'second', 'gnarled', 'nearest', 'leafy', 'nearby', 'own', 'single', 'tall', 'Tall', 'genealogical', 'olive', 'fine', 'same', 'big', 'rare', 'secular'],
 					  "verb":['was', 'did', 'grew', 'wished', 'trembling', 'fell', 'trembled', 'presented', 'tried', 'remained', 'became', 'told', 'thought', 'related', 'sighed', 'rejoicing', 'saw', 'overlooking', 'bent', 'clustering', 'rose', 'stood', 'rustled', 'talked', 'nodded', 'covered', 'sat', 'smelled', 'sent', 'decked', 'sloping', 'sprouted', 'continued', 'spreading', 'Spring', 'waving', 'brought', 'made', 'exposed', 'seeking', 'waved', 'carrying', 'having', 'waiting', 'blocked', 'touched', 'overarched', 'seemed', 'loomed', 'deepened', 'appeared', 'detached', 'profiled', 'contained', 'lined', 'seen', 'flashed', 'watching', 'lighted', 'growing', 'consists', 'forsakes', 'betrayed', 'found', 'reclining', 'concealed', 'situated', 'shaken', 'leaning', 'lashed', 'projected', 'swayed', 'looking']},
 
-	
+
 	{"name":"flower", "assoc":["clean","natural","light","weak","beautiful","pure","slender"],
 						"color":["red","orange","yellow","green","blue","purple","pink"],
 						"type":"plant",
 						"adj":['planted', 'sweet', 'lovely', 'bloomed', 'fragrant', 'decked', 'perfumed', 'wilted', 'scented', 'odorous', 'leaved', 'starred', 'floral', 'showy', 'variegated', 'luxuriant', 'withered', 'balmy', 'choice', 'decorated', 'potted', 'twining','purplish', 'damask', 'vernal', 'dewy', 'redolent', 'sunny', 'hued', 'alpine', 'pansy', 'garnished', 'bordered', 'verdant', 'flaunting', 'crowned', 'tropical','spangled', 'leafless', 'patterned', 'creamy', 'gorgeous', 'plucked', 'waxy', 'waxen', 'velvety', 'tubular', 'purple', 'autumnal', 'scarlet', 'shady', 'artificial', 'leafy', 'feathery', 'starry', 'tasteful', 'dainty', 'fair', 'decorative','colorful', 'tinted', 'honeyed', 'flowery', 'laden', 'gaudy', 'gauzy', 'limpid','symbolical', 'inlaid', 'shaded', 'inconspicuous', 'overgrown', 'bright', 'poor', 'prettiest', 'single', 'empty', 'sick', 'other', 'happy', 'dead', 'handsome', 'beautiful', 'red', 'white', 'elder', 'real', 'yellow', 'few', 'artificial', 'little', 'golden', 'withered', 'humble'],
-						"verb":['adorn', 'seed', 'leaf', 'blossom', 'bloom', 'bunch', 'wither', 'wreathe', 'strew', 'festoon', 'sprig', 'decorate', 'weed', 'transplant', 'twine', 'deck', 'embroider', 'ripen', 'ornament', 'color', 'bud', 'carpet', 'pluck', 'beautify', 'sow', 'distil', 'droop', 'mow', 'landscape', 'fringe', 'scent', 'turf', 'soil', 'waft', 'entwine', 'fashion', 'sprinkle', 'plant', 'grow', 'mingle']},					  
-	
+						"verb":['adorn', 'seed', 'leaf', 'blossom', 'bloom', 'bunch', 'wither', 'wreathe', 'strew', 'festoon', 'sprig', 'decorate', 'weed', 'transplant', 'twine', 'deck', 'embroider', 'ripen', 'ornament', 'color', 'bud', 'carpet', 'pluck', 'beautify', 'sow', 'distil', 'droop', 'mow', 'landscape', 'fringe', 'scent', 'turf', 'soil', 'waft', 'entwine', 'fashion', 'sprinkle', 'plant', 'grow', 'mingle']},
+
 	# Related to the air.
 	{"name":"breeze", "assoc":["clean","natural","light","fresh"],
 						"color":[],
 						"type":"air",
 						"adj":["balmy","refreshing","fitful","sprung","gusty","salty","scented","cloudless","sultry","vernal","fragrant","cloudy","eastward","cool","perfumed","spicy","humid","redolent","gauzy","fresh","leafy","choppy","fleecy","stiff","inconstant","downwind","laden","odorous","pungent","autumnal","tropical","exhilarating","blown","faint","delicious","tops","heeled","nearby","wispy","filmy","oppressive","caressing","silken","loving","acrid","glassy","languid","sluggish","favourable","sparkling","hazy","airy","chilled","stifling","prevailing",'gentle', 'brisk', 'capricious', 'fragrant', 'languid', 'fresh', 'fair', 'autumnal'],
 						"verb":['arose', 'subsided', 'fanning', 'sighed', 'whispering', 'ceased']},
-	
+
 	# Geographical features.
 	{"name":"mountain", "assoc":["tall","immobile","big","strong","powerful","pure"],
 						"color":["green","white"],
@@ -269,17 +269,17 @@ objects = [
 					   "type":"landscape",
 					   "adj":['wild', 'best', 'Indian', 'boundless', 'blue', 'old', 'human'],
 					   "verb":['beat',"darkening",'called']},
-	
+
 	{"name":"swamp", "assoc":["natural","ugly","dirty","foul"],
 					   "color":["green","grey","brown","black"],
 					   "type":"landscape",
 					   "adj":["great","frozen","thick","misty","ghostly","sandy","sickly","wild","dense","tangled","sluggish","noxious","poisonous","wooded","entangled","treacherous","grassy","stinking","coastal","humid","flooded","arid","sterile"],
-					   "verb":["rot","bubble"]},	
+					   "verb":["rot","bubble"]},
 ]
 
 def getObjects():
 	return objects
-	
+
 def main():
 	print "This file is used to store object representations."
 
