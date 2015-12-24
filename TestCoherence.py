@@ -54,8 +54,11 @@ def test_coherence(noun,verb):
     else:
       stats = soup.find('div',{'id':'resultStats'}).text
       start = 'About '
-      end = ' results'
-      count = int(stats[stats.find(start)+len(start):stats.rfind(end)].replace(',',''))
+      end = ' result'
+      count = stats[stats.find(start)+len(start):stats.rfind(end)].replace(',','')
+      if count == '':
+        count = stats[0:stats.rfind(end)].replace(',','')
+      count = int(count)
     return count
 
   except Exception as e:
