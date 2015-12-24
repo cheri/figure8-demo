@@ -32,7 +32,7 @@ from bs4 import BeautifulSoup
 def test_coherence(noun,verb):
   try:
     # Form our Google query.
-    url = 'https://www.google.com/search?q="' + noun + "+"+ verb + '"'
+    url = 'https://www.google.com/search?q="' + noun + "+"+ verb + '"&hl=en'
 
     # Provide a header so Google will allow us to use their website to search.
     headers = {}
