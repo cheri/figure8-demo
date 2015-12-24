@@ -28,6 +28,7 @@
 import urllib2
 from urllib2 import Request
 from bs4 import BeautifulSoup
+import re
 
 def test_coherence(noun,verb):
   try:
@@ -46,12 +47,16 @@ def test_coherence(noun,verb):
     # Use Beautiful Soup (http://www.crummy.com/software/BeautifulSoup/)
     # to find the result statistics for us.
     soup = BeautifulSoup(source, "html.parser")
-    stats = soup.find('div',{'id':'resultStats'}).text
 
     # We only want the number associated with the number of Google results.
-    start = 'About '
-    end = ' results'
-    return int(stats[stats.find(start)+len(start):stats.rfind(end)].replace(',',''))
+    if soup.find(text=re.compile('did not match any documents')):
+      count = 0
+    else:
+      stats = soup.find('div',{'id':'resultStats'}).text
+      start = 'About '
+      end = ' results'
+      count = int(stats[stats.find(start)+len(start):stats.rfind(end)].replace(',',''))
+    return count
 
   except Exception as e:
     print("Simple coherence test failed: " +  str(e))
